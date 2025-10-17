@@ -1,0 +1,12 @@
+Text_splitting:
+  chunk_size: 1000
+  chunk_overlap: 200
+
+Embeddings:
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+
+Cohere_LLM:
+  model: "command-a-03-2025"
+
+  
+  
