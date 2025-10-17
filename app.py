@@ -1,16 +1,7 @@
 import streamlit as st
 from core.QA_chain import retriever_qa
-import os
+from io import BytesIO
 
-
-# Small cached wrapper to avoid reprocessing the same (file, query) pair
-@st.cache_data(show_spinner=False)
-def get_answer_cached(file_bytes: bytes, filename: str, query: str):
-    from io import BytesIO
-    f = BytesIO(file_bytes)
-    # give BytesIO a name attribute so loaders that expect file.name work
-    f.name = filename
-    return retriever_qa(f, query)
 
 # -----------------------
 # Streamlit Configuration
@@ -64,11 +55,11 @@ if uploaded_file is not None:
         st.session_state.processing = True
         with st.spinner("Processing... Please wait."):
             try:
-                # Use cached wrapper so identical (file,query) calls are fast.
-                # Convert to bytes for stable cache keys; for large files
-                # consider hashing instead to reduce memory use in cache.
+                # Process the file and query without caching
                 file_bytes = uploaded_file.getbuffer().tobytes()
-                answer = get_answer_cached(file_bytes, uploaded_file.name, query)
+                f = BytesIO(file_bytes)
+                f.name = uploaded_file.name
+                answer = retriever_qa(f, query)
                 st.subheader("💬 Answer:")
                 st.write(answer)
 
