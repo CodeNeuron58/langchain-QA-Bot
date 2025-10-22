@@ -25,12 +25,6 @@ Highlights
 - CLI and optional Gradio UI (`app_Gradio.py`) for demos.
 - Configurable via `params.yaml`.
 
-Is this portfolio-worthy? Short answer: yes — with a few extras (demo video/GIF, screenshots, pinned deps, Docker, and a public demo) this is a strong portfolio piece. Read the "Portfolio tips" section below for specific, high-impact improvements.
-
-## Quick demo (what reviewers want to see)
-- Short animated GIF showing: 1) uploading documents, 2) building the index, 3) asking a question and receiving a grounded answer. 
-- A short video (30–90s) explaining architecture and a sample query.
-
 ## Quickstart (Windows)
 These commands assume PowerShell on Windows and the repository root is `c:\Campusx\langchain-QA-Bot`.
 
@@ -104,19 +98,6 @@ Data
 Notebooks
 - `notebook/Experiment.ipynb` — used for experimentation and to verify embeddings/retrieval behavior.
 
-## Security, costs, and notes
-- The project may call external LLM/embedding APIs — be mindful of API costs.
-- Do not check API keys into Git. Use `.env` or secure secret managers.
+# End
 
-## Portfolio tips (high-impact, short checklist)
-1. Add a short demo GIF (≤15s) and a 30–90s video in the repo (or a link to a hosted demo).
-2. Pin dependency versions in `requirements.txt` and add a `requirements-freeze.txt` made with `pip freeze`.
-3. Add a `Dockerfile` and a minimal `docker-compose.yml` for a reproducible demo environment.
-4. Add a `README` section with example screenshots and a short script of the demo steps.
-5. Add simple unit tests for critical modules (e.g., chunking, embedding wrapper, retriever logic) and run them in CI (GitHub Actions).
-6. Add badges (build/test/pypi or Python version) and a short `CHANGELOG.md`.
-7. Provide a live demo (Heroku, Render, Railway, or GitHub Pages linking to a recorded video) if possible.
-
-## How to extend
-- Swap the embedding or LLM provider by editing `params.yaml` and the provider wrapper in `src/models/`.
-- Add alternative vector stores (FAISS, Chroma, Milvus) by implementing the store interface in `src/preprocessing/vector_store.py`.
+---
